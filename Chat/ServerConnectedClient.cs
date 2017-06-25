@@ -39,7 +39,6 @@ namespace Chat
                     writer.Write((int)Requests.ConnectionOk);
                     writer.Flush();
                     WorkWithClient();
-
                 }
             }
         }
