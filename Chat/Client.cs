@@ -12,6 +12,7 @@ namespace Chat
 {
     public class Client : ClientBase
     {
+        public bool isConected;
         public Client() : base(new TcpClient())
         {
             RegisterHandler<MessageRequest>(Requests.Message, m => MessageReceived?.Invoke(m));
@@ -22,6 +23,7 @@ namespace Chat
             try
             {
                 client.Connect(address, 8080);
+                isConected = client.Connected;
                 var stream = client.GetStream();
                 writer = new BinaryWriter(stream);
                 reader = new BinaryReader(stream);
@@ -30,18 +32,18 @@ namespace Chat
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Cient start method");
                 return false;
             }
         }
 
-        public void SendMessage(string login, string message)
-        {
-            writer.Write((int)Requests.Message);
-            writer.Write(login);
-            writer.Write(message);
-            writer.Flush();
-        }
+        //public void SendMessage(string login, string message)
+        //{
+        //    writer.Write((int)Requests.Message);
+        //    writer.Write(login);
+        //    writer.Write(message);
+        //    writer.Flush();
+        //}
 
         public event Action<MessageRequest> MessageReceived;
     }

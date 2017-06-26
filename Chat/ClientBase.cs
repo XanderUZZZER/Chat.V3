@@ -10,31 +10,14 @@ namespace Chat
 {
     public abstract class ClientBase
     {
-        protected TcpClient client;
-        protected BinaryReader reader;
-        protected BinaryWriter writer;
         private Dictionary<Requests, Action> handlers = new Dictionary<Requests, Action>();
+        protected TcpClient client;
+        protected BinaryWriter writer;
+        protected BinaryReader reader;
 
         public ClientBase(TcpClient client)
         {
-            this.client = client;
-        }
-
-        protected void WorkWithClient()
-        {
-            while (true)
-            {
-                Requests request = (Requests)reader.ReadInt32();
-                Action handler;
-                if (handlers.TryGetValue(request, out handler))
-                {
-                    handler();
-                }
-                else
-                {
-                    throw new InvalidDataException();
-                }
-            }
+            this.client = new TcpClient();
         }
 
         protected void RegisterHandler<T>(Requests request, Action<T> action)
@@ -68,12 +51,46 @@ namespace Chat
             throw new InvalidOperationException();
         }
 
-        //public void SendMessage(string login, string message)
-        //{
-        //    writer.Write((int)Requests.Message);
-        //    writer.Write(login);
-        //    writer.Write(message);
-        //    writer.Flush();
-        //}
+        protected void WorkWithClient()
+        {
+            while (true)
+            {
+                Requests request = (Requests)reader.ReadInt32();
+                Action handler;
+                //if (handlers.TryGetValue(request, out handler))
+                //{
+                //    handler();
+                //}
+                //else
+                //{
+                //    throw new InvalidDataException();
+                //}
+                try
+                {
+                    if (handlers.TryGetValue(request, out handler))
+                    {
+                        handler();
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show(request.ToString(), "Work with client method");
+                        //System.Windows.Forms.MessageBox.Show(reader.ReadString(), "Work with client method");
+                        //throw new InvalidDataException();
+                    }
+                }
+                catch (InvalidDataException)
+                {
+                    System.Windows.Forms.MessageBox.Show("Test");
+                }
+            }
+        }
+
+        public void SendMessage(string login, string message)
+        {
+            writer.Write((int)Requests.Message);
+            writer.Write(login);
+            writer.Write(message);
+            writer.Flush();
+        }
     }
 }

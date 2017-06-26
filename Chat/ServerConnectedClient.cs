@@ -36,19 +36,19 @@ namespace Chat
                 {
                     writer = new BinaryWriter(stream);
                     reader = new BinaryReader(stream);
-                    writer.Write((int)Requests.ConnectionOk);
+                    writer.Write((int)Requests.ConnectionOk);                    
                     writer.Flush();
                     WorkWithClient();
                 }
             }
         }
 
-        private void SendMessage(string login, string message)
-        {
-            writer.Write((int)Requests.Message);
-            writer.Write(login);
-            writer.Write(message);
-            writer.Flush();
-        }
+        //private void SendMessage(string login, string message)
+        //{
+        //    writer.Write((int)Requests.Message);
+        //    writer.Write(login);
+        //    writer.Write(message);
+        //    writer.Flush();
+        //}
     }
 }
