@@ -35,11 +35,23 @@ namespace Chat
                 ServerConnectedClient connectedClient = new ServerConnectedClient(this, client);
                 connectedClient.Start();
                 clients.Add(connectedClient);
+                
+                
+                for (int i = 0; i < clients.Count; i++)
+                {
+                    if (clients[i] == null)
+                    {
+                        clients.Remove(clients[i]);
+                    }
+                }ClientConnected?.Invoke();
             }
         }
         public void Stop()
         {
             listener.Stop();
         }
+
+        public event Action ClientConnected;
+        public event Action ClientDisconnected; 
     }
 }

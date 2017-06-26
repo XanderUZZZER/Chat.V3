@@ -47,9 +47,9 @@
             // 
             // btSend
             // 
-            this.btSend.Location = new System.Drawing.Point(197, 13);
+            this.btSend.Location = new System.Drawing.Point(212, 255);
             this.btSend.Name = "btSend";
-            this.btSend.Size = new System.Drawing.Size(75, 23);
+            this.btSend.Size = new System.Drawing.Size(61, 20);
             this.btSend.TabIndex = 1;
             this.btSend.Text = "Send";
             this.btSend.UseVisualStyleBackColor = true;
@@ -57,25 +57,25 @@
             // 
             // tbMessage
             // 
-            this.tbMessage.Location = new System.Drawing.Point(13, 43);
+            this.tbMessage.Location = new System.Drawing.Point(13, 255);
             this.tbMessage.Name = "tbMessage";
-            this.tbMessage.Size = new System.Drawing.Size(259, 20);
+            this.tbMessage.Size = new System.Drawing.Size(193, 20);
             this.tbMessage.TabIndex = 2;
             this.tbMessage.Text = "Default text";
             // 
             // tbChat
             // 
-            this.tbChat.Location = new System.Drawing.Point(12, 69);
+            this.tbChat.Location = new System.Drawing.Point(12, 42);
             this.tbChat.Multiline = true;
             this.tbChat.Name = "tbChat";
-            this.tbChat.Size = new System.Drawing.Size(260, 180);
+            this.tbChat.Size = new System.Drawing.Size(260, 207);
             this.tbChat.TabIndex = 3;
             // 
             // ClientMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 286);
             this.Controls.Add(this.tbChat);
             this.Controls.Add(this.tbMessage);
             this.Controls.Add(this.btSend);

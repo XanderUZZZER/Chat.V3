@@ -11,7 +11,7 @@ namespace Chat
         public ServerConnectedClient(Server server, TcpClient client) : base(client)
         {
             this.server = server;
-            this.client = client;
+            this.client = client;            
             RegisterHandler<MessageRequest>(Requests.Message, ProcessMessage);
         }
 
@@ -42,13 +42,5 @@ namespace Chat
                 }
             }
         }
-
-        //private void SendMessage(string login, string message)
-        //{
-        //    writer.Write((int)Requests.Message);
-        //    writer.Write(login);
-        //    writer.Write(message);
-        //    writer.Flush();
-        //}
     }
 }

@@ -27,25 +27,20 @@ namespace Chat
                 var stream = client.GetStream();
                 writer = new BinaryWriter(stream);
                 reader = new BinaryReader(stream);
-                bool r = (Requests)reader.ReadInt32() == Requests.ConnectionOk;
+                bool result = (Requests)reader.ReadInt32() == Requests.ConnectionOk;
                 new Thread(WorkWithClient).Start();
-                return r;
+                //Connected?.Invoke();
+                return result;
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message, "Cient start method");
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Client start method");
                 return false;
             }
         }
 
-        //public void SendMessage(string login, string message)
-        //{
-        //    writer.Write((int)Requests.Message);
-        //    writer.Write(login);
-        //    writer.Write(message);
-        //    writer.Flush();
-        //}
-
         public event Action<MessageRequest> MessageReceived;
+        //public event Func<bool> Connected;
+        //public event Func<bool> Disconnected;
     }
 }
