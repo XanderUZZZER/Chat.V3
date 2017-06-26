@@ -27,8 +27,9 @@ namespace Chat
                 var stream = client.GetStream();
                 writer = new BinaryWriter(stream);
                 reader = new BinaryReader(stream);
+                bool r = (Requests)reader.ReadInt32() == Requests.ConnectionOk;
                 new Thread(WorkWithClient).Start();
-                return (Requests)reader.ReadInt32() == Requests.ConnectionOk;
+                return r;
             }
             catch (Exception ex)
             {
