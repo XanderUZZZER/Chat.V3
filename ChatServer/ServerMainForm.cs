@@ -29,7 +29,18 @@ namespace ChatServer
         private void btServerStart_Click(object sender, EventArgs e)
         {
             server.Start();
-            
         }
+
+        private void btServerStop_Click(object sender, EventArgs e)
+        {
+            server.Stop();
+        }
+
+        private void ServerMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            server.Stop();
+        }
+
+
     }
 }

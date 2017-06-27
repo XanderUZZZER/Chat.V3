@@ -25,10 +25,9 @@ namespace ChatClient
 
         private void btConnect_Click(object sender, EventArgs e)
         {
-            if (!client.isConected)
-            {                
-                client.Start(IPAddress.Parse("127.0.0.1"));
-            }
+                //client = new Client();
+                client.Start(IPAddress.Parse("127.0.0.1"));           
+            
         }
 
         private void Client_MessageReceived(MessageRequest obj)
@@ -42,6 +41,11 @@ namespace ChatClient
         private void btSend_Click(object sender, EventArgs e)
         {
             client.SendMessage("user1", tbMessage.Text);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            client.Stop();
         }
     }
 }

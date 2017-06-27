@@ -11,13 +11,8 @@ namespace Chat
     public class Server
     {
         private TcpListener listener;
+        private bool isRunning = false;
         private List<ServerConnectedClient> clients = new List<ServerConnectedClient>();
-
-        public Server()
-        {
-            listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 8080);
-        }
-
         public IEnumerable<ServerConnectedClient> Clients
         {
             get
@@ -26,29 +21,40 @@ namespace Chat
             }
         }
 
+        public Server()
+        {
+            listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 8080);
+        }        
+
         public async void Start()
         {
             listener.Start();
-            while (true)
+            isRunning = true;
+            while (isRunning)
             {
-                TcpClient client = await listener.AcceptTcpClientAsync();
-                ServerConnectedClient connectedClient = new ServerConnectedClient(this, client);
-                connectedClient.Start();
-                clients.Add(connectedClient);
-                
-                
-                for (int i = 0; i < clients.Count; i++)
+                try
+                {                    
+                    TcpClient client = await listener.AcceptTcpClientAsync();
+                    ServerConnectedClient connectedClient = new ServerConnectedClient(this, client);
+                    connectedClient.Start();
+                    clients.Add(connectedClient);
+                    ClientConnected?.Invoke();
+                }
+                catch
                 {
-                    if (clients[i] == null)
-                    {
-                        clients.Remove(clients[i]);
-                    }
-                }ClientConnected?.Invoke();
+                    System.Windows.Forms.MessageBox.Show("Test");
+                }
             }
         }
+
         public void Stop()
         {
+            //foreach(var clnt in clients)
+            //{
+            //    clnt.Stop();
+            //}
             listener.Stop();
+            isRunning = false;
         }
 
         public event Action ClientConnected;

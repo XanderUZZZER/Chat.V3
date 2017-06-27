@@ -12,7 +12,13 @@ namespace Chat
 {
     public class Client : ClientBase
     {
-        public bool isConected;
+        public bool isConected
+        {
+            get
+            {
+                return client.Connected;
+            }
+        }
         public Client() : base(new TcpClient())
         {
             RegisterHandler<MessageRequest>(Requests.Message, m => MessageReceived?.Invoke(m));
@@ -23,13 +29,12 @@ namespace Chat
             try
             {
                 client.Connect(address, 8080);
-                isConected = client.Connected;
                 var stream = client.GetStream();
                 writer = new BinaryWriter(stream);
                 reader = new BinaryReader(stream);
                 bool result = (Requests)reader.ReadInt32() == Requests.ConnectionOk;
                 new Thread(WorkWithClient).Start();
-                //Connected?.Invoke();
+                Connected?.Invoke();
                 return result;
             }
             catch (Exception ex)
@@ -38,9 +43,9 @@ namespace Chat
                 return false;
             }
         }
-
+        
         public event Action<MessageRequest> MessageReceived;
-        //public event Func<bool> Connected;
+        public event Func<bool> Connected;
         //public event Func<bool> Disconnected;
     }
 }

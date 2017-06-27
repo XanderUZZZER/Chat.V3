@@ -55,18 +55,10 @@ namespace Chat
         {
             while (true)
             {
-                Requests request = (Requests)reader.ReadInt32();
-                Action handler;
-                //if (handlers.TryGetValue(request, out handler))
-                //{
-                //    handler();
-                //}
-                //else
-                //{
-                //    throw new InvalidDataException();
-                //}
                 try
                 {
+                    Requests request = (Requests)reader.ReadInt32();
+                    Action handler;
                     if (handlers.TryGetValue(request, out handler))
                     {
                         handler();
@@ -83,6 +75,11 @@ namespace Chat
                     System.Windows.Forms.MessageBox.Show("Test");
                 }
             }
+        }
+
+        public void Stop()
+        {
+            client.Close();
         }
 
         public void SendMessage(string login, string message)

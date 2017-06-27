@@ -52,6 +52,7 @@
             this.btServerStop.TabIndex = 1;
             this.btServerStop.Text = "Stop server";
             this.btServerStop.UseVisualStyleBackColor = true;
+            this.btServerStop.Click += new System.EventHandler(this.btServerStop_Click);
             // 
             // lbConnectedClients
             // 
@@ -73,6 +74,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ServerMainForm";
             this.Text = "Server";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerMainForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
