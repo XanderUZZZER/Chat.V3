@@ -17,30 +17,11 @@ namespace ChatServer
         public ServerMainForm()
         {
             InitializeComponent();
-            lbConnectedClients.Text = server.Clients.Count().ToString();
-            server.ClientConnected += Server_ClientConnected;
-        }
-
-        private void Server_ClientConnected()
-        {
-            lbConnectedClients.Text = server.Clients.Count().ToString();
         }
 
         private void btServerStart_Click(object sender, EventArgs e)
         {
             server.Start();
         }
-
-        private void btServerStop_Click(object sender, EventArgs e)
-        {
-            server.Stop();
-        }
-
-        private void ServerMainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            server.Stop();
-        }
-
-
     }
 }

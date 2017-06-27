@@ -23,7 +23,7 @@ namespace Chat
 
         public Server()
         {
-            listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 8080);
+            listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 8080);            
         }        
 
         public async void Start()
@@ -38,7 +38,6 @@ namespace Chat
                     ServerConnectedClient connectedClient = new ServerConnectedClient(this, client);
                     connectedClient.Start();
                     clients.Add(connectedClient);
-                    ClientConnected?.Invoke();
                 }
                 catch
                 {
@@ -49,15 +48,8 @@ namespace Chat
 
         public void Stop()
         {
-            //foreach(var clnt in clients)
-            //{
-            //    clnt.Stop();
-            //}
             listener.Stop();
             isRunning = false;
         }
-
-        public event Action ClientConnected;
-        public event Action ClientDisconnected; 
     }
 }

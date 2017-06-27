@@ -14,6 +14,8 @@ namespace Chat
         protected TcpClient client;
         protected BinaryWriter writer;
         protected BinaryReader reader;
+        protected string login;
+        protected string pass;
 
         public ClientBase(TcpClient client)
         {
@@ -89,5 +91,14 @@ namespace Chat
             writer.Write(message);
             writer.Flush();
         }
+
+        public void Disconnect()
+        {
+            writer.Write((int)Requests.Disconnect);
+            writer.Flush();
+            Disconnected?.Invoke();
+        }
+
+        public event Func<ServerConnectedClient> Disconnected;
     }
 }

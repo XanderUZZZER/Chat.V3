@@ -10,6 +10,6 @@ namespace Chat
     {
         ConnectionOk,
         Message,
-        TestConnectionOK
+        Disconnect
     }
 }
