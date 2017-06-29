@@ -37,6 +37,7 @@ namespace Chat
                 {
                     writer = new BinaryWriter(stream);
                     reader = new BinaryReader(stream);
+                    string temp = reader.ReadString();
                     writer.Write((int)Requests.ConnectionOk);                    
                     writer.Flush();
                     WorkWithClient();

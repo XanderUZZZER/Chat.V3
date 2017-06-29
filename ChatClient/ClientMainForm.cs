@@ -28,7 +28,7 @@ namespace ChatClient
         {
             //client = new Client();
                 client.Start(IPAddress.Parse("127.0.0.1"));           
-            
+            button1.Text = 
         }
 
         private void Client_MessageReceived(MessageRequest obj)
