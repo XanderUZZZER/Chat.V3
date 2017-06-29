@@ -18,7 +18,6 @@ namespace ChatClient
 
         public ClientMainForm()
         {
-            client = new Client();
             InitializeComponent();
             
             //client.MessageReceived += Client_MessageReceived;

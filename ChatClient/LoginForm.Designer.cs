@@ -127,7 +127,7 @@
             this.tbAddress.Name = "tbAddress";
             this.tbAddress.Size = new System.Drawing.Size(198, 20);
             this.tbAddress.TabIndex = 8;
-            this.tbAddress.Text = "255.255.255.255";
+            this.tbAddress.Text = "127.0.0.1";
             // 
             // tbPort
             // 
@@ -136,7 +136,7 @@
             this.tbPort.Name = "tbPort";
             this.tbPort.Size = new System.Drawing.Size(42, 20);
             this.tbPort.TabIndex = 10;
-            this.tbPort.Text = "63999";
+            this.tbPort.Text = "8080";
             // 
             // lbPort
             // 

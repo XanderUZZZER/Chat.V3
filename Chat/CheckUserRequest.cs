@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Chat
 {
-    public enum Requests
+    public class CheckUserRequest
     {
-        CheckUser,
-        ConnectionOk,
-        Message,
-        Disconnect
+        public string User { get; set; }
+        public string Password { get; set; }
     }
 }

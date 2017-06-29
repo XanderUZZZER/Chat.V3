@@ -14,12 +14,15 @@ namespace Chat
         protected TcpClient client;
         protected BinaryWriter writer;
         protected BinaryReader reader;
-        protected string login;
-        protected string pass;
+        protected string name;
+        protected string password;
+        protected User user;
 
-        public ClientBase(TcpClient client)
+        public ClientBase(TcpClient client, string name, string password)// User user)
         {
-            this.client = new TcpClient();
+            this.client = client;// new TcpClient();
+            this.name = name;//this.user = user;
+            this.password = password;
         }
 
         protected void RegisterHandler<T>(Requests request, Action<T> action)

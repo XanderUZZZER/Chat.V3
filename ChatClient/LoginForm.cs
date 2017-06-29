@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,6 @@ namespace ChatClient
         private Client client;
         public LoginForm()
         {
-            client = new Client();
             InitializeComponent();
         }
 
@@ -34,7 +34,15 @@ namespace ChatClient
 
         private void btConnect_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                client = new Client(tbName.Text, tbPassword.Text);
+                client.Start(IPAddress.Parse(tbAddress.Text));
+            }
+            catch
+            {
+                MessageBox.Show("Connection error");
+            }
         }
 
         private void cbCustomAddress_CheckedChanged(object sender, EventArgs e)

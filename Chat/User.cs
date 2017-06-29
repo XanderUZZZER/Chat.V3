@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace Chat
 {
-    class User
+    public class User
     {
-        public string Name { get; private set; }
-        
+        public string Name { get; private set; }        
         private string password;
+
+        public User(string name, string password)
+        {
+            Name = name;
+            this.password = password;
+        }
 
         public bool CorrectPassword(string password)
         {

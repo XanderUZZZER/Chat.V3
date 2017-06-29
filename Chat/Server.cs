@@ -51,5 +51,10 @@ namespace Chat
             listener.Stop();
             isRunning = false;
         }
+
+        private bool IsRegisteredUser(ServerConnectedClient connectedClient)
+        {
+            return false;
+        }
     }
 }
