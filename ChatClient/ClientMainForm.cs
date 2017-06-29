@@ -19,13 +19,12 @@ namespace ChatClient
         public ClientMainForm()
         {
             InitializeComponent();
-            
-            //client.MessageReceived += Client_MessageReceived;
+            client.MessageReceived += Client_MessageReceived;
         }        
 
         private void btConnect_Click(object sender, EventArgs e)
         {
-            //client = new Client();
+                //client = new Client();
                 client.Start(IPAddress.Parse("127.0.0.1"));           
             
         }
