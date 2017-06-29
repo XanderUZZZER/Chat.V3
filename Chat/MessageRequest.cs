@@ -10,6 +10,5 @@ namespace Chat
     {
         public string Message { get; set; }
         public string User { get; set; }
-        //public User User { get; set; }
     }
 }

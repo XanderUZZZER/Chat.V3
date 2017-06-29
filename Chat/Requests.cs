@@ -8,7 +8,6 @@ namespace Chat
 {
     public enum Requests
     {
-        CheckUser,
         ConnectionOk,
         Message,
         Disconnect

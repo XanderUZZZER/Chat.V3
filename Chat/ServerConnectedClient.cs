@@ -9,17 +9,11 @@ namespace Chat
     {
         private Server server;
 
-        public ServerConnectedClient(Server server, TcpClient client) : base(client, "name", "pass")
+        public ServerConnectedClient(Server server, TcpClient client) : base(client)
         {
             this.server = server;
-            //this.client = client;            
+            this.client = client;            
             RegisterHandler<MessageRequest>(Requests.Message, ProcessMessage);
-            RegisterHandler<CheckUserRequest>(Requests.CheckUser, CheckUser);
-        }
-
-        private void CheckUser(CheckUserRequest request)
-        {
-            if 
         }
 
         private void ProcessMessage(MessageRequest request)

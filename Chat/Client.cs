@@ -13,7 +13,7 @@ namespace Chat
 {
     public class Client : ClientBase
     {
-        public Client(string name, string password) : base(new TcpClient(), name, password)// new User())
+        public Client() : base(new TcpClient())
         {
             RegisterHandler<MessageRequest>(Requests.Message, m => MessageReceived?.Invoke(m));
         }
