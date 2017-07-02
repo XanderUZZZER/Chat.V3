@@ -9,18 +9,18 @@ namespace Chat
     {
         private Server server;
 
-        public ServerConnectedClient(Server server, TcpClient client) : base(client)
+        public ServerConnectedClient(Server server, TcpClient client) : base(client, "server user")
         {
             this.server = server;
             this.client = client;            
-            RegisterHandler<MessageRequest>(Requests.Message, ProcessMessage);
+            RegisterHandler<RequestMessage>(Requests.Message, ProcessMessage);
         }
 
-        private void ProcessMessage(MessageRequest request)
+        private void ProcessMessage(RequestMessage request)
         {
             foreach (var clnt in server.Clients)
             {
-                clnt.SendMessage(request.User, request.Message);
+                clnt.SendMessage(request.Login, request.Message);
             }
         }
 
@@ -37,8 +37,8 @@ namespace Chat
                 {
                     writer = new BinaryWriter(stream);
                     reader = new BinaryReader(stream);
-                    string temp = reader.ReadString();
-                    writer.Write((int)Requests.ConnectionOk);                    
+                    //string temp = reader.ReadString();
+                    writer.Write((int)Requests.ConnectionOk);
                     writer.Flush();
                     WorkWithClient();
                 }

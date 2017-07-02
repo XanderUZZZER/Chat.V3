@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,9 +15,9 @@ namespace ChatClient
     public partial class LoginForm : Form
     {
         private Client client;
+        private ChatForm chatForm;
         public LoginForm()
         {
-            client = new Client();
             InitializeComponent();
         }
 
@@ -34,7 +35,20 @@ namespace ChatClient
 
         private void btConnect_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                client = new Client(tbName.Text);
+                client.Start(IPAddress.Parse(tbAddress.Text), Int32.Parse(tbPort.Text));
+                if (client.IsConnected)
+                {
+                    chatForm = new ChatForm(client, this);
+                    chatForm.Show();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void cbCustomAddress_CheckedChanged(object sender, EventArgs e)

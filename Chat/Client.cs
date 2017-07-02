@@ -13,16 +13,16 @@ namespace Chat
 {
     public class Client : ClientBase
     {
-        public Client() : base(new TcpClient())
+        public Client(string login) : base(new TcpClient(), login)
         {
-            RegisterHandler<MessageRequest>(Requests.Message, m => MessageReceived?.Invoke(m));
+            RegisterHandler<RequestMessage>(Requests.Message, m => MessageReceived?.Invoke(m));
         }
 
-        public bool Start(IPAddress address)
+        public bool Start(IPAddress address, int port)
         {
             try
             {
-                client.Connect(address, 8080);                
+                client.Connect(address, port);                
                 var stream = client.GetStream();
                 writer = new BinaryWriter(stream);
                 reader = new BinaryReader(stream);
@@ -37,6 +37,6 @@ namespace Chat
             }
         }
 
-        public event Action<MessageRequest> MessageReceived;
+        public event Action<RequestMessage> MessageReceived;
     }
 }

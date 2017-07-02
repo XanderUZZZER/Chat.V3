@@ -10,9 +10,9 @@ namespace Chat
 {
     public class Server
     {
-        private TcpListener listener;
-        private bool isRunning = false;
+        private TcpListener listener;        
         private List<ServerConnectedClient> clients = new List<ServerConnectedClient>();
+        public bool isRunning = false;
         public IEnumerable<ServerConnectedClient> Clients
         {
             get
@@ -23,12 +23,12 @@ namespace Chat
 
         public Server()
         {
-            listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 8080);            
+            listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 8080);
         }        
 
         public async void Start()
         {
-            listener.Start();
+            listener.Start();            
             isRunning = true;
             while (isRunning)
             {

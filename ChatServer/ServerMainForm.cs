@@ -22,6 +22,7 @@ namespace ChatServer
         private void btServerStart_Click(object sender, EventArgs e)
         {
             server.Start();
+            lbConnectedClients.Text = server.isRunning.ToString();
         }
     }
 }

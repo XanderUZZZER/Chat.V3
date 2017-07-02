@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Chat
 {
-    public class MessageRequest
+    public class RequestMessage
     {
-        public string Message { get; set; }
-        public string User { get; set; }
+        public string Login { get; set; }
+        public string Message { get; set; }        
     }
 }

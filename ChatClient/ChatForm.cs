@@ -12,36 +12,36 @@ using System.Net;
 
 namespace ChatClient
 {
-    public partial class ClientMainForm : Form
+    public partial class ChatForm : Form
     {
         private Client client;
 
-        public ClientMainForm()
+        public ChatForm(Client client, LoginForm loginForm)
         {
-            client = new Client();
+            //client = new Client();
+            this.client = client;
             InitializeComponent();
             
-            //client.MessageReceived += Client_MessageReceived;
-        }        
+            client.MessageReceived += Client_MessageReceived;
+            loginForm.Hide();
+        }
 
         private void btConnect_Click(object sender, EventArgs e)
         {
-            //client = new Client();
-                client.Start(IPAddress.Parse("127.0.0.1"));           
-            button1.Text = 
+            client.Start(IPAddress.Parse("127.0.0.1"), 8080);
         }
 
-        private void Client_MessageReceived(MessageRequest obj)
+        private void Client_MessageReceived(RequestMessage obj)
         {
             BeginInvoke(new Action(() =>
                                     {
-                                        tbChat.AppendText("\r\n" + obj.User + "|" + obj.Message);
+                                        tbChat.AppendText("\r\n" + obj.Login + " | " + obj.Message);
                                     }),
                         new object[0]);
         }
         private void btSend_Click(object sender, EventArgs e)
         {
-            client.SendMessage("user1", tbMessage.Text);
+            client.SendMessage(client.Login, tbMessage.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
