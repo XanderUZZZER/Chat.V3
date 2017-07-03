@@ -16,7 +16,7 @@ namespace ChatServer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ServerMainForm());
+            Application.Run(new ServerForm());
         }
     }
 }

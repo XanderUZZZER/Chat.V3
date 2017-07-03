@@ -12,7 +12,7 @@ namespace Chat
     {
         private TcpListener listener;        
         private List<ServerConnectedClient> clients = new List<ServerConnectedClient>();
-        public bool isRunning = false;
+        public bool IsRunning = false;
         public IEnumerable<ServerConnectedClient> Clients
         {
             get
@@ -29,8 +29,8 @@ namespace Chat
         public async void Start()
         {
             listener.Start();            
-            isRunning = true;
-            while (isRunning)
+            IsRunning = true;
+            while (IsRunning)
             {
                 try
                 {                    
@@ -49,7 +49,8 @@ namespace Chat
         public void Stop()
         {
             listener.Stop();
-            isRunning = false;
+            IsRunning = false;
         }
+
     }
 }

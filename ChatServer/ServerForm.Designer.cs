@@ -1,6 +1,6 @@
 ﻿namespace ChatServer
 {
-    partial class ServerMainForm
+    partial class ServerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerMainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerForm));
             this.btServerStart = new System.Windows.Forms.Button();
             this.btServerStop = new System.Windows.Forms.Button();
             this.lbConnectedClients = new System.Windows.Forms.Label();

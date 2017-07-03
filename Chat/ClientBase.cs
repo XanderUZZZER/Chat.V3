@@ -51,7 +51,6 @@ namespace Chat
             {
                 return reader.ReadString();
             }
-
             throw new InvalidOperationException();
         }
 
@@ -69,7 +68,7 @@ namespace Chat
                     }
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show(request.ToString(), "Work with client method");
+                        System.Windows.Forms.MessageBox.Show(request.ToString(), "Request not found");
                         //System.Windows.Forms.MessageBox.Show(reader.ReadString(), "Work with client method");
                         //throw new InvalidDataException();
                     }
