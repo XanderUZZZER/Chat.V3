@@ -46,12 +46,13 @@
             // 
             // btServerStop
             // 
-            this.btServerStop.Location = new System.Drawing.Point(197, 226);
+            this.btServerStop.Location = new System.Drawing.Point(197, 93);
             this.btServerStop.Name = "btServerStop";
             this.btServerStop.Size = new System.Drawing.Size(75, 23);
             this.btServerStop.TabIndex = 1;
             this.btServerStop.Text = "Stop server";
             this.btServerStop.UseVisualStyleBackColor = true;
+            this.btServerStop.Click += new System.EventHandler(this.btServerStop_Click);
             // 
             // lbConnectedClients
             // 
@@ -62,16 +63,16 @@
             this.lbConnectedClients.TabIndex = 2;
             this.lbConnectedClients.Text = "label1";
             // 
-            // ServerMainForm
+            // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 121);
             this.Controls.Add(this.lbConnectedClients);
             this.Controls.Add(this.btServerStop);
             this.Controls.Add(this.btServerStart);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ServerMainForm";
+            this.Name = "ServerForm";
             this.Text = "Server";
             this.ResumeLayout(false);
             this.PerformLayout();

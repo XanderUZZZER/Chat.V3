@@ -15,7 +15,7 @@ namespace Chat
         protected BinaryWriter writer;
         protected BinaryReader reader;
         public string Login { get; }
-        protected string pass;
+        protected string password;
         public bool IsConnected { get { return client.Connected; } }
 
         public ClientBase(TcpClient client, string login)

@@ -18,7 +18,7 @@ namespace Chat
             RegisterHandler<RequestMessage>(Requests.Message, m => MessageReceived?.Invoke(m));
         }
 
-        public bool Start(IPAddress address, int port)
+        public void Start(IPAddress address, int port)
         {
             try
             {
@@ -26,14 +26,20 @@ namespace Chat
                 var stream = client.GetStream();
                 writer = new BinaryWriter(stream);
                 reader = new BinaryReader(stream);
-                bool result = (Requests)reader.ReadInt32() == Requests.ConnectionOk;
+                //bool result = (Requests)reader.ReadInt32() == Requests.ConnectionOk;
+                if((Requests)reader.ReadInt32() == Requests.ConnectionOk)
+                {
+                    writer.Write(Login);
+                    writer.Write(password);
+                    writer.Flush();
+                }
                 new Thread(WorkWithClient).Start();
-                return result;
+                //return result;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Connection error", 0, MessageBoxIcon.Error);
-                return false;
+                //return false;
             }
         }
 

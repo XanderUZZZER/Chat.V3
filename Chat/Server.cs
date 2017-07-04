@@ -30,6 +30,7 @@ namespace Chat
         {
             listener.Start();            
             IsRunning = true;
+            StatusChanged?.Invoke();
             while (IsRunning)
             {
                 try
@@ -41,7 +42,7 @@ namespace Chat
                 }
                 catch
                 {
-                    System.Windows.Forms.MessageBox.Show("Test");
+                    System.Windows.Forms.MessageBox.Show("Server is stopped");
                 }
             }
         }
@@ -50,7 +51,10 @@ namespace Chat
         {
             listener.Stop();
             IsRunning = false;
+            StatusChanged?.Invoke();            
         }
+
+        public event Action StatusChanged;
 
     }
 }

@@ -40,6 +40,7 @@ namespace Chat
                     //string temp = reader.ReadString();
                     writer.Write((int)Requests.ConnectionOk);
                     writer.Flush();
+                    Login = 
                     WorkWithClient();
                 }
             }

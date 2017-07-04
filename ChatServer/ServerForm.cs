@@ -29,13 +29,24 @@ namespace ChatServer
         {
             InitializeComponent();
             server = new Server();
+            server.StatusChanged += Server_StatusChanged;
+            lbConnectedClients.Text = serverStatus;
+        }
+
+        private void Server_StatusChanged()
+        {
             lbConnectedClients.Text = serverStatus;
         }
 
         private void btServerStart_Click(object sender, EventArgs e)
         {
             server.Start();
-            lbConnectedClients.Text = serverStatus;
+            //lbConnectedClients.Text = serverStatus;
+        }
+
+        private void btServerStop_Click(object sender, EventArgs e)
+        {
+            server.Stop();
         }
     }
 }
