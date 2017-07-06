@@ -9,8 +9,10 @@ namespace Chat
     public enum Requests
     {
         ConnectionOk,
+        Disconnect,
+        LoginBad,
         LoginOk,
         Message,
-        Disconnect
+        PasswordBad
     }
 }

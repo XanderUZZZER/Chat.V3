@@ -18,12 +18,10 @@ namespace ChatClient
 
         public ChatForm(Client client, LoginForm loginForm)
         {
-            //client = new Client();
-            this.client = client;
-            InitializeComponent();
-            
-            client.MessageReceived += Client_MessageReceived;
             loginForm.Hide();
+            this.client = client;
+            InitializeComponent();            
+            client.MessageReceived += Client_MessageReceived;            
         }
 
         private void btConnect_Click(object sender, EventArgs e)
@@ -33,10 +31,9 @@ namespace ChatClient
 
         private void Client_MessageReceived(RequestMessage obj)
         {
-            BeginInvoke(new Action(() =>
-                                    {
-                                        tbChat.AppendText("\r\n" + obj.Login + " | " + obj.Message);
-                                    }),
+            BeginInvoke(new Action(() => {
+                                            tbChat.AppendText("\r\n" + obj.Login + " | " + obj.Message);
+                                         }), 
                         new object[0]);
         }
         private void btSend_Click(object sender, EventArgs e)

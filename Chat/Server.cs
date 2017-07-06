@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -12,6 +13,8 @@ namespace Chat
     {
         private TcpListener listener;        
         private List<ServerConnectedClient> clients = new List<ServerConnectedClient>();
+
+        public Dictionary<string, string> Users = new Dictionary<string, string>();
         public bool IsRunning = false;
         public IEnumerable<ServerConnectedClient> Clients
         {
@@ -24,6 +27,13 @@ namespace Chat
         public Server()
         {
             listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 8080);
+            //Users = File.ReadAllLines(Directory.GetCurrentDirectory()).ToDictionary(s => s.Split(' ')) ;
+            string[] temp = File.ReadAllLines(@"./users.txt");
+            foreach (string s in temp)
+            {
+                string[] c = s.Split(' ');
+                Users.Add(c[0], c[1]);
+            }
         }        
 
         public async void Start()

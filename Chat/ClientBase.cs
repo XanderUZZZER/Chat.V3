@@ -14,14 +14,13 @@ namespace Chat
         protected TcpClient client;
         protected BinaryWriter writer;
         protected BinaryReader reader;
-        public string Login { get; }
-        protected string password;
+        public string Login { get; set; }
+        public string Password { get; set; }
         public bool IsConnected { get { return client.Connected; } }
 
-        public ClientBase(TcpClient client, string login)
+        public ClientBase(TcpClient client)
         {
-            this.client = new TcpClient();
-            Login = login;
+            this.client = new TcpClient();            
         }
 
         protected void RegisterHandler<T>(Requests request, Action<T> action)

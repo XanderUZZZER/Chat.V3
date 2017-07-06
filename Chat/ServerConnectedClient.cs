@@ -9,7 +9,7 @@ namespace Chat
     {
         private Server server;
 
-        public ServerConnectedClient(Server server, TcpClient client) : base(client, "server user")
+        public ServerConnectedClient(Server server, TcpClient client) : base(client)
         {
             this.server = server;
             this.client = client;            
@@ -40,10 +40,27 @@ namespace Chat
                     //string temp = reader.ReadString();
                     writer.Write((int)Requests.ConnectionOk);
                     writer.Flush();
-                    Login = 
+                    Login = reader.ReadString();
+                    Password = reader.ReadString();
+                    writer.Write((int)CheckUser(Login, Password));
+                    //!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    // !!  Check empty password
                     WorkWithClient();
                 }
             }
+        }
+
+        private Requests CheckUser(string login, string password)
+        {
+            if (!server.Users.ContainsKey(login))
+            {
+                return Requests.LoginBad;
+            }
+            else if (!server.Users.TryGetValue(Login, out password))
+            {
+                return Requests.PasswordBad;
+            }
+            return Requests.LoginOk;
         }
     }
 }

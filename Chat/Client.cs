@@ -13,8 +13,10 @@ namespace Chat
 {
     public class Client : ClientBase
     {
-        public Client(string login) : base(new TcpClient(), login)
+        public Client(string login, string password) : base(new TcpClient())
         {
+            Login = login;
+            Password = password;
             RegisterHandler<RequestMessage>(Requests.Message, m => MessageReceived?.Invoke(m));
         }
 
@@ -22,15 +24,15 @@ namespace Chat
         {
             try
             {
-                client.Connect(address, port);                
+                client.Connect(address, port);
                 var stream = client.GetStream();
                 writer = new BinaryWriter(stream);
                 reader = new BinaryReader(stream);
                 //bool result = (Requests)reader.ReadInt32() == Requests.ConnectionOk;
-                if((Requests)reader.ReadInt32() == Requests.ConnectionOk)
+                if ((Requests)reader.ReadInt32() == Requests.ConnectionOk)
                 {
                     writer.Write(Login);
-                    writer.Write(password);
+                    writer.Write(Password);
                     writer.Flush();
                 }
                 new Thread(WorkWithClient).Start();
