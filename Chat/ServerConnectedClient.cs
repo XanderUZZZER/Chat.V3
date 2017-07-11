@@ -40,8 +40,7 @@ namespace Chat
                     //string temp = reader.ReadString();
                     writer.Write((int)Requests.ConnectionOk);
                     writer.Flush();
-                    Login = reader.ReadString();
-                    Password = reader.ReadString();
+                    
                     writer.Write((int)CheckUser(Login, Password));
                     //!!!!!!!!!!!!!!!!!!!!!!!!!!
                     // !!  Check empty password
@@ -50,13 +49,15 @@ namespace Chat
             }
         }
 
-        private Requests CheckUser(string login, string password)
+        private Requests CheckUser(BinaryReader reader)
         {
-            if (!server.Users.ContainsKey(login))
+            Login = reader.ReadString();
+            Password = reader.ReadString();
+            if (!server.Users.ContainsKey(Login))
             {
                 return Requests.LoginBad;
             }
-            else if (!server.Users.TryGetValue(Login, out password))
+            else if (server.Users[Login] != Password)
             {
                 return Requests.PasswordBad;
             }
